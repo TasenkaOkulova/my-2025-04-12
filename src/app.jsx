@@ -1,4 +1,6 @@
-import { Form } from "antd"
+import {Form, Input, InputNumber, Checkbox, Button} from "antd"
+import './style.css'
+import { Desktop, Mobile, Tablet } from "./responsive";
 
 export const App = () => {
 
@@ -7,12 +9,70 @@ export const App = () => {
     }
 
     return (
+        <div>
+            <Desktop>Вы смотрите это на компьютере</Desktop>
+            <Tablet>Вы смотрите это на планшете</Tablet>
+            <Mobile>Вы смотрите это на телефоне</Mobile>
         <Form 
             name='auth'
             onFinish={onFinish}
-            autoComplete="off"
+            autoComplete='off'
         > 
-            App
+            <Form.Item 
+                label="Логин"
+                name="login"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Заполните поле логин'
+                    }
+                ]}
+            >
+                <Input/>
+            </Form.Item>
+            <Form.Item 
+                label="Пароль"
+                name="password"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Заполните поле пароль'
+                    }
+                ]}
+            >
+                <Input.Password/>
+            </Form.Item>
+            <Form.Item 
+                label="Возраст"
+                name="age"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Заполните поле возраст'
+                    }
+                ]}
+            >
+                <InputNumber/>
+            </Form.Item>
+            <Form.Item
+                name="remember"
+                valuePropName="checked"
+            >
+                <Checkbox>
+                    Запомнить меня
+                </Checkbox>
+
+            </Form.Item>
+            <Form.Item>
+                <Button 
+                type='primary'
+                htmlType='submit'
+                className='my-custom-button' 
+                >
+                    Войти
+                </Button>
+            </Form.Item>
         </Form>
+        </div>
     )
 }
